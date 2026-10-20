@@ -33,10 +33,15 @@ Questo è l'unico elenco delle ipotesi aperte: i requisiti rimandano qui.
 | 2026-10-20 | Movimenti | Un'unica entità con pagamento, addebito, saldo e rimborso |
 | 2026-10-20 | Strike | Non si cancellano: si segnano come rimossi, con data e causa |
 | 2026-10-20 | Responsive (RNF-01) | Fuori dalla prima versione, possibile sviluppo futuro |
+| 2026-10-20 | Specifiche tecniche | Unico file `specifiche-tecniche.md` per tutta l'app; piani di realizzazione un pezzo alla volta; niente user story |
+| 2026-10-20 | Architettura | Pagine proprie per tesserato e admin, regole nelle funzioni di servizio; pannello admin di Django non esposto |
+| 2026-10-20 | Job giornaliero | Comando `send_card_reminders` eseguito ogni ora dal servizio `scheduler` di Docker Compose, senza duplicare gli avvisi |
+| 2026-10-20 | Tentativi di login | Gestiti nel progetto, senza librerie esterne |
+| 2026-10-20 | Dipendenze | Django, psycopg, gunicorn, python-dotenv; HTMX come file statico; test con il runner di Django |
+| 2026-10-20 | Backup del database | Escluso per ora, per scelta dell'utente |
 
 ## Ipotesi aperte
 
 Da confermare prima di implementare le parti collegate.
 
 - [ ] **Conservazione dei dati (RNF-06).** Per quanto tempo si tiene lo storico di prenotazioni e strike? Da decidere con il titolare insieme all'informativa privacy, prima della messa in produzione.
-- [ ] **Job giornaliero.** Come pianificare nel deploy Docker il comando degli avvisi sulla tessera (RF-36).
