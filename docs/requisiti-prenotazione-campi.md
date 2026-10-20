@@ -283,12 +283,9 @@ Bastano 9 entità. La prenotazione è il centro: lega utente e campo e porta con
 
 ## Stack e prossimi passi
 
-Lo stack è deciso (`decisioni.md`): Django e PostgreSQL, template lato server con HTMX solo per il calendario, Docker per sviluppo e deploy. Un vincolo di esclusione di PostgreSQL impedisce le sovrapposizioni direttamente nel database (RNF-04). Un comando giornaliero invia gli avvisi sulla tessera (RF-36); come pianificarlo nel deploy è ancora da decidere.
+Lo stack è deciso (`decisioni.md`): Django e PostgreSQL, template lato server con HTMX solo per il calendario, Docker per sviluppo e deploy. Come si costruisce il sito (moduli, database e vincoli, pagine, test) è descritto in `specifiche-tecniche.md`.
 
 **Prossimi passi**
 
-1. Scrivere le user story con i criteri di accettazione, partendo dagli RF.
-2. Disegnare le schermate principali: calendario, le mie prenotazioni, pannello admin.
-3. Definire lo schema del database e i vincoli.
-4. Preparare la base del progetto: repository, Docker, CI e traduzioni.
-5. Definire la conservazione dei dati insieme all'informativa privacy (RNF-06), prima della messa in produzione.
+1. Realizzare l'app un pezzo alla volta, nell'ordine della sezione 7 delle specifiche tecniche, con un piano per ogni pezzo.
+2. Definire la conservazione dei dati insieme all'informativa privacy (RNF-06), prima della messa in produzione.
