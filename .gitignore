@@ -1,0 +1,12 @@
+# Configurazione locale e segreti
+.env
+
+# Ambiente Python
+.venv/
+__pycache__/
+
+# Log
+logs/
+
+# Materiale del corso
+LLM_Lez_*.pdf
