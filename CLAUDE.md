@@ -5,7 +5,8 @@ I requisiti sono in `docs/requisiti-prenotazione-campi.md` e sono la fonte di ve
 Le decisioni prese durante il progetto sono in `docs/decisioni.md`.
 
 ## Stato attuale
-- Il progetto contiene solo documentazione: non ci sono ancora codice, dipendenze né test automatici.
+- Base del progetto pronta (pezzo 1 di `docs/specifiche-tecniche.md`): moduli vuoti, nessun modello. I piani dei pezzi sono in `docs/piani/`.
+- Il database di sviluppo non ha migrazioni: non eseguire `migrate` prima dell'utente personalizzato (pezzo 2).
 - Stack concordato: Django + PostgreSQL, template lato server (HTMX solo per il calendario), Docker per sviluppo e deploy.
 - Le versioni delle librerie si fissano in `requirements.txt`, verificandole sulla documentazione ufficiale.
 
@@ -30,13 +31,19 @@ Le decisioni prese durante il progetto sono in `docs/decisioni.md`.
 - Nessuna sovrapposizione (RF-07, RF-44) e massimo 3 prenotazioni attive (RF-09), garantiti lato server e nel
   database anche con richieste simultanee (RNF-04): vincolo di esclusione PostgreSQL e transazioni, non solo controlli nelle view.
 - Orari timezone-aware in Europe/Rome, con gestione corretta dell'ora legale (RNF-03).
+  L'ora corrente si legge solo da `common.now()`; nei test si fissa con `common.clock.fixed_now()`.
 - Le azioni dell'admin su prenotazioni, pagamenti, strike e utenti scrivono nel registro azioni (RNF-07).
 - I test citano l'ID del requisito che verificano (es. `test_rf07_...`). Gli ID RF/RNF non si riassegnano.
 
 ## Ambiente (Windows)
 - Comandi in PowerShell.
-- Ambiente Python in `.venv`, creato con `py -m venv .venv`; usare direttamente `.\.venv\Scripts\python.exe`, senza attivarlo.
+- Ambiente Python in `.venv`, creato con `py -3.13 -m venv .venv`; usare direttamente `.\.venv\Scripts\python.exe`, senza attivarlo.
 - Configurazione reale in `.env`, esclusa da Git; il modello condiviso è `.env.example`, senza segreti.
+- PostgreSQL di sviluppo in Docker sulla porta 5433 (la 5432 è occupata da un PostgreSQL locale).
+  Host `127.0.0.1`, non `localhost`: su Windows `localhost` prova prima IPv6 e la connessione resta appesa.
+- La chiave segreta non deve contenere `$`: Docker Compose legge anche `.env` e lo scambierebbe per una variabile.
+- gettext (traduzioni) e `gh` (GitHub CLI) sono installati con winget; in un terminale aperto prima dell'installazione
+  non sono nel PATH.
 
 ## Git
 - Branch: `main` contiene solo versioni rilasciabili; `develop` integra il lavoro;
@@ -51,4 +58,12 @@ Le decisioni prese durante il progetto sono in `docs/decisioni.md`.
 - Niente segreti, `.env` o `.venv/` in Git.
 
 ## Comandi
-Nessuno ancora. Avvio, test e migrazioni si aggiungono qui solo dopo averli eseguiti davvero.
+Si aggiungono qui solo dopo averli eseguiti davvero.
+
+- Dipendenze: `.\.venv\Scripts\python.exe -m pip install -r requirements.txt`, poi `.\.venv\Scripts\python.exe -m pip check`.
+- Database: `docker compose up -d db`; `docker compose ps` deve mostrare `db` "healthy".
+- Test: `.\.venv\Scripts\python.exe manage.py test --noinput`
+  (`--noinput` elimina senza chiedere un database di test rimasto da un'esecuzione interrotta; senza, Django chiede conferma).
+- Controlli: `.\.venv\Scripts\python.exe manage.py check` e `.\.venv\Scripts\python.exe manage.py makemigrations --check --dry-run`.
+- Traduzioni: `.\.venv\Scripts\python.exe manage.py makemessages -l en --ignore=.venv`, tradurre `locale/en/LC_MESSAGES/django.po`,
+  poi `.\.venv\Scripts\python.exe manage.py compilemessages --ignore=.venv`.

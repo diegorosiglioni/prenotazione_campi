@@ -39,9 +39,21 @@ Questo è l'unico elenco delle ipotesi aperte: i requisiti rimandano qui.
 | 2026-10-20 | Tentativi di login | Gestiti nel progetto, senza librerie esterne |
 | 2026-10-20 | Dipendenze | Django, psycopg, gunicorn, python-dotenv; HTMX come file statico; test con il runner di Django |
 | 2026-10-20 | Backup del database | Escluso per ora, per scelta dell'utente |
+| 2026-10-20 | Versioni (pezzo 1) | Python 3.13, Django 5.2.18 LTS, psycopg[binary] 3.3.6, gunicorn 26.2.0, python-dotenv 1.2.4, PostgreSQL 18.6. `requirements.txt` fissa solo le dipendenze dirette |
+| 2026-10-20 | HTMX | Versione 2.0.11; il file si scarica nel pezzo 3, con il calendario |
+| 2026-10-20 | Database di sviluppo | PostgreSQL in Docker sulla porta 5433, perché sul PC la 5432 è occupata da un PostgreSQL locale |
+| 2026-10-20 | Traduzioni | Testi sorgente in italiano, traduzione in `locale/en/`. gettext installato con winget; i file `.mo` non vanno in Git |
+| 2026-10-20 | Formati (RNF-10) | Moduli di formato per italiano e inglese: date gg/mm/aaaa e ore HH:MM, anche nei moduli da compilare |
+| 2026-10-20 | Ora corrente (RNF-03) | `common.now()`; nei test si fissa con `fixed_now()`, che funziona anche con `from common import now` |
+| 2026-10-20 | Admin di Django | Escluso dalle app installate. Nessun `migrate` sul database di sviluppo prima dell'utente personalizzato (pezzo 2) |
+| 2026-10-20 | Nomi dei test | I test di sola infrastruttura, senza un requisito, usano il prefisso `test_env_` |
+| 2026-10-20 | CI | GitHub Actions su ogni Pull Request e a ogni push su `develop` e `main` |
+| 2026-10-20 | GitHub | `develop` è il branch predefinito; Claude Code crea le PR con `gh` su richiesta, il merge resta all'utente |
 
 ## Ipotesi aperte
 
 Da confermare prima di implementare le parti collegate.
 
 - [ ] **Conservazione dei dati (RNF-06).** Per quanto tempo si tiene lo storico di prenotazioni e strike? Da decidere con il titolare insieme all'informativa privacy, prima della messa in produzione.
+- [ ] **Correzione dopo un saldo (RF-50, RF-54).** Cosa succede se l'admin corregge un esito su cui è già stato registrato un saldo? Da decidere nel piano del pezzo 5.
+- [ ] **Offerta cancellata dall'admin nelle ultime 2 ore (RF-17).** Le specifiche (sezione 3) deducono che non genera addebito, perché non c'è un importo da addebitare. Da confermare prima del pezzo 4.
