@@ -10,7 +10,7 @@ Punto di partenza per chi riprende il lavoro (una persona o una nuova sessione d
 | --- | --- | --- |
 | 1. Base del progetto | Unito in `develop` (PR #6), CI verde | `piani/01-base-progetto.md` |
 | 2. Account e login | Unito in `develop` (PR #7), CI verde | `piani/02-account-login.md` |
-| 3. Campi e prenotazione | Fatto sul PC, branch `feature/campi-prenotazione`, **da committare** (su richiesta) | `piani/03-campi-prenotazione.md` |
+| 3. Campi e prenotazione | Fatto; branch `feature/campi-prenotazione` con push fatto, **PR verso `develop` da aprire** (su richiesta) | `piani/03-campi-prenotazione.md` |
 | 4. Cancellazioni | – | – |
 | 5. Esiti, pagamenti, debiti e strike | – | – |
 | 6. Notifiche e job giornaliero | – | – |
@@ -20,7 +20,7 @@ Verifiche del pezzo 3: vedi `piani/03-campi-prenotazione.md`, sezione 12.
 
 ## Prossimi passi
 
-1. Commit del pezzo 3 (proposti nella sezione 10 del piano), push e PR `feature/campi-prenotazione` → `develop`, solo su richiesta.
+1. PR `feature/campi-prenotazione` → `develop`, solo su richiesta; poi controllare la CI.
 2. Prova nel browser del pezzo 3 da parte dell'utente (passo 8 del piano).
 3. Decidere se accorciare i test con un hash veloce delle password solo per i test (vedi "Ambiente").
 4. Pezzo 4 (cancellazioni): prima confermare l'ipotesi aperta sull'offerta cancellata dall'admin nelle ultime 2 ore.
@@ -42,7 +42,7 @@ Elenco completo e aggiornato: `decisioni.md`, sezione "Ipotesi aperte".
 - **Prima del pezzo 4:** una prenotazione offerta, cancellata dall'admin nelle ultime 2 ore, genera addebito? Le specifiche deducono di no: va confermato.
 - **Nel piano del pezzo 5:** cosa succede se l'admin corregge un esito su cui è già stato registrato un saldo.
 - **Prima della produzione:** per quanto tempo si conservano i dati (RNF-06).
-- **Grafica.** L'aspetto attuale (`static/css/site.css`) è provvisorio: l'utente vuole rifarlo in futuro. Finché non c'è un piano dedicato, le pagine nuove usano lo stesso stile semplice.
+- **Grafica.** L'aspetto attuale (`static/css/site.css`) è provvisorio: l'utente vuole rifarlo più avanti ("abbellimento del sito"), con un piano dedicato. Finché non c'è un piano dedicato, le pagine nuove usano lo stesso stile semplice.
 - **Lezioni del corso.** In cartella c'è solo `LLM_Lez_3.pdf`. Quando arriva la lezione 4 (Docker e Superpowers), leggerla e proporre gli aggiornamenti a `CLAUDE.md`.
 
 ## Ambiente: cose che hanno fatto perdere tempo
