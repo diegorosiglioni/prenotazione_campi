@@ -264,4 +264,4 @@ Solo su richiesta, uno per ogni risultato verificato:
 | Traduzioni | Eseguita: 71 testi nuovi tradotti, nessun `msgstr` vuoto oltre all'intestazione; `compilemessages` senza errori |
 | Server vero | Eseguita con `runserver`: login in italiano, CSS servito, selettore che passa all'inglese con "Card code" |
 | Prova nel browser | Eseguita dall'utente: `create_admin`, login, creazione di un tesserato, cambio password, lingua e disattivazione funzionano. L'aspetto grafico va rifatto in futuro |
-| CI | **Da fare**: dopo il push |
+| CI | Eseguita il 28/10/2026 sulla PR #7: 104 test superati, `check` e `makemigrations --check` senza problemi |
