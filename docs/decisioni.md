@@ -59,6 +59,16 @@ Questo è l'unico elenco delle ipotesi aperte: i requisiti rimandano qui.
 | 2026-10-28 | Lingua (RNF-02, RF-55) | Il selettore della pagina di accesso vale solo prima del login; dopo vale la lingua salvata sull'utente, che si cambia da "Il mio account". L'admin la sceglie solo alla creazione dell'account |
 | 2026-10-28 | Pagine del pezzo 2 | Dopo il login: tesserato su "Il mio account", admin sull'elenco utenti, fino al calendario del pezzo 3. Elenco utenti senza ricerca, in ordine di cognome |
 | 2026-10-28 | Aspetto delle pagine | Un piccolo file CSS scritto a mano, senza librerie grafiche. È provvisorio: l'utente vuole rifare la grafica in futuro |
+| 2026-10-28 | Pezzo 3: notifiche | Nessuna notifica nel pezzo 3: il pezzo 6 le aggiunge nei servizi già scritti (prenotazione dell'admin, annullamenti del sistema) |
+| 2026-10-28 | Prezzi (RF-05) | La pagina dei prezzi nasce nel pezzo 3, in "Prezzi e blocchi"; prezzo maggiore di zero; ogni modifica va nel registro azioni |
+| 2026-10-28 | Prenotazione offerta (RF-23) | Copia il prezzo del tipo di campo come le altre; la gratuità la indica lo stato "Offerta" |
+| 2026-10-28 | Le mie prenotazioni (RF-12) | Pagina in sola lettura nel pezzo 3; il pulsante "Cancella" arriva con il pezzo 4 |
+| 2026-10-28 | Calendario (RF-11) | Un giorno alla volta, 5 campi in colonne, righe da 15 minuti 8:00–22:45; link "Prenota" sulle caselle da cui parte uno slot intero; HTMX aggiorna solo la griglia. Tesserato: da oggi a 14 giorni; admin: qualsiasi giorno |
+| 2026-10-28 | Campo attivo | **Regola aggiunta.** `Court.is_active` resta, tutti attivi, nessuna pagina per cambiarlo; un campo non attivo non compare nel calendario e il servizio lo rifiuta come "campo bloccato" |
+| 2026-10-28 | Admin intestatario (RF-31) | Nuovo codice d'errore `not_a_member`: "La prenotazione deve essere intestata a un tesserato" |
+| 2026-10-28 | Blocchi dei campi (RF-14) | Inizio e fine con data e ora, anche su più giorni, senza obbligo dei 15 minuti; inizio nel futuro; la pagina mostra i blocchi non ancora finiti, ognuno si può rimuovere |
+| 2026-10-28 | Registro degli annullamenti (RNF-07) | Blocco del campo e disattivazione scrivono la riga dell'azione e una riga `booking_system_cancelled` per ogni prenotazione annullata |
+| 2026-10-28 | Prenotazione a nome di un tesserato | Dal calendario dell'admin, stesso riepilogo con l'elenco dei tesserati attivi (ordine di cognome) e la casella "Offerta" |
 
 ## Ipotesi aperte
 
