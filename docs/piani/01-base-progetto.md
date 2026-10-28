@@ -272,4 +272,4 @@ Solo su richiesta, uno per ogni risultato verificato:
 | `compilemessages` | Eseguita: creato `locale/en/LC_MESSAGES/django.mo` |
 | Avvio senza chiave | Eseguita: `ImproperlyConfigured: Missing required environment variable DJANGO_SECRET_KEY.` |
 | Segreti fuori da Git | Eseguita: `.env`, `.venv/` e `django.mo` ignorati (`git check-ignore`) |
-| CI su GitHub | **Da fare**: richiede il push del branch |
+| CI su GitHub | Eseguita il 28/10/2026 sulla PR #6: 25 test superati, `check` e `makemigrations --check` senza problemi |
