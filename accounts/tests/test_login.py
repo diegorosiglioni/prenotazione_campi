@@ -125,15 +125,15 @@ class LoginTests(TestCase):
         self.member.save()
         self.assert_logged_in(self.login("ABC1"), self.member)
 
-    def test_rf31_member_lands_on_account_page(self):
+    def test_rf31_member_lands_on_calendar(self):
         response = self.login("ABC1")
         self.assertRedirects(response, reverse("home"), fetch_redirect_response=False)
-        self.assertRedirects(self.client.get(reverse("home")), reverse("account"))
+        self.assertRedirects(self.client.get(reverse("home")), reverse("calendar"))
 
-    def test_rf31_admin_lands_on_user_list(self):
+    def test_rf31_admin_lands_on_calendar(self):
         make_admin()
         self.login("ADMIN")
-        self.assertRedirects(self.client.get(reverse("home")), reverse("staff_users"))
+        self.assertRedirects(self.client.get(reverse("home")), reverse("calendar"))
 
     def test_rf31_logout(self):
         self.client.force_login(self.member)

@@ -1,0 +1,28 @@
+{% load i18n %}
+<table>
+  <thead>
+    <tr>
+      <th>{% translate "Campo" %}</th>
+      <th>{% translate "Data" %}</th>
+      <th>{% translate "Orario" %}</th>
+      <th>{% translate "Prezzo" %}</th>
+      <th>{% translate "Stato" %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for booking in bookings %}
+    <tr>
+      <td>{{ booking.court }}</td>
+      <td>{{ booking.start|date }}</td>
+      <td>{{ booking.start|time }}–{{ booking.end|time }}</td>
+      <td>€ {{ booking.price }}</td>
+      <td>
+        {{ booking.get_status_display }}
+        {% if booking.system_reason %}<span class="muted">({{ booking.get_system_reason_display }})</span>{% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">{% translate "Nessuna prenotazione." %}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>

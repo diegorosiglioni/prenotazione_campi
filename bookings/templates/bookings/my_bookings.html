@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Le mie prenotazioni" %}{% endblock %}
+
+{% block content %}
+<h1>{% translate "Le mie prenotazioni" %}</h1>
+
+<h2>{% translate "Prossime" %}</h2>
+{% include "bookings/_booking_table.html" with bookings=upcoming %}
+
+<h2>{% translate "Passate" %}</h2>
+{% include "bookings/_booking_table.html" with bookings=past %}
+{% endblock %}

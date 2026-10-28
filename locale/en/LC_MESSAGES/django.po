@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: prenotazione-campi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-28 12:42+0100\n"
+"POT-Creation-Date: 2026-10-28 16:21+0100\n"
 "PO-Revision-Date: 2026-10-20 14:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -42,7 +42,8 @@ msgstr "dd/mm/yyyy"
 #: .\accounts\management\commands\create_admin.py:22
 msgid ""
 "L'admin esiste già. Per una nuova password usare: changepassword <codice>."
-msgstr "The admin already exists. For a new password use: changepassword <code>."
+msgstr ""
+"The admin already exists. For a new password use: changepassword <code>."
 
 #: .\accounts\management\commands\create_admin.py:25
 msgid "Codice riservato dell'admin: "
@@ -77,9 +78,11 @@ msgstr "Admin created with code %(code)s."
 msgid ""
 "Il codice tessera può contenere solo lettere dalla A alla Z e numeri, fino a "
 "20 caratteri."
-msgstr "The card code may contain only letters A to Z and digits, up to 20 characters."
+msgstr ""
+"The card code may contain only letters A to Z and digits, up to 20 "
+"characters."
 
-#: .\accounts\models.py:47
+#: .\accounts\models.py:47 .\bookings\forms.py:16
 msgid "Tesserato"
 msgstr "Member"
 
@@ -151,7 +154,7 @@ msgstr "An admin already exists."
 msgid "La scadenza della tessera è obbligatoria per i tesserati."
 msgstr "Card expiry is required for members."
 
-#: .\accounts\templates\accounts\account.html:5 .\templates\base.html:14
+#: .\accounts\templates\accounts\account.html:5 .\templates\base.html:22
 msgid "Il mio account"
 msgstr "My account"
 
@@ -173,12 +176,13 @@ msgstr "Card expiry"
 
 #: .\accounts\templates\accounts\account.html:17
 #: .\accounts\templates\accounts\staff\user_detail.html:17
+#: .\courts\templates\courts\staff\courts.html:25
 msgid "Salva"
 msgstr "Save"
 
 #: .\accounts\templates\accounts\account.html:19
 #: .\accounts\templates\accounts\password_change.html:5
-#: .\templates\base.html:15
+#: .\templates\base.html:23
 msgid "Cambia password"
 msgstr "Change password"
 
@@ -260,7 +264,7 @@ msgid "Riattiva account"
 msgstr "Reactivate account"
 
 #: .\accounts\templates\accounts\staff\user_list.html:5
-#: .\templates\base.html:13
+#: .\templates\base.html:18
 msgid "Utenti"
 msgstr "Users"
 
@@ -269,6 +273,7 @@ msgid "Cognome"
 msgstr "Last name"
 
 #: .\accounts\templates\accounts\staff\user_list.html:14
+#: .\bookings\templates\bookings\_booking_table.html:9
 msgid "Stato"
 msgstr "Status"
 
@@ -284,34 +289,360 @@ msgstr "No members."
 msgid "Password cambiata."
 msgstr "Password changed."
 
-#: .\accounts\views.py:55
+#: .\accounts\views.py:52
 msgid "Lingua aggiornata."
 msgstr "Language updated."
 
-#: .\accounts\views.py:84
+#: .\accounts\views.py:93
 msgid "Account creato."
 msgstr "Account created."
 
-#: .\accounts\views.py:102
+#: .\accounts\views.py:111
 msgid "Dati aggiornati."
 msgstr "Details updated."
 
-#: .\accounts\views.py:108
+#: .\accounts\views.py:117
 msgid "Password temporanea assegnata."
 msgstr "Temporary password assigned."
 
-#: .\accounts\views.py:112
+#: .\accounts\views.py:121
 msgid "Account disattivato."
 msgstr "Account deactivated."
 
-#: .\accounts\views.py:116
+#: .\accounts\views.py:125
 msgid "Account riattivato."
 msgstr "Account reactivated."
 
-#: .\templates\base.html:5 .\templates\base.html:10
+#: .\bookings\forms.py:21
+msgid "Offerta (gratuita)"
+msgstr "Offered (free)"
+
+#: .\bookings\models.py:23
+msgid "Prenotata"
+msgstr "Booked"
+
+#: .\bookings\models.py:24
+msgid "Pagata"
+msgstr "Paid"
+
+#: .\bookings\models.py:25
+msgid "Offerta"
+msgstr "Offered"
+
+#: .\bookings\models.py:26
+msgid "Cancellata"
+msgstr "Cancelled"
+
+#: .\bookings\models.py:27
+msgid "Cancellata dall'admin"
+msgstr "Cancelled by the admin"
+
+#: .\bookings\models.py:28
+msgid "Annullata dal sistema"
+msgstr "Cancelled by the system"
+
+#: .\bookings\models.py:29
+msgid "No-show"
+msgstr "No-show"
+
+#: .\bookings\models.py:30
+msgid "Non pagata"
+msgstr "Unpaid"
+
+#: .\bookings\models.py:49
+msgid "account bloccato"
+msgstr "account blocked"
+
+#: .\bookings\models.py:50
+msgid "account disattivato"
+msgstr "account deactivated"
+
+#: .\bookings\models.py:51
+msgid "campo bloccato"
+msgstr "court blocked"
+
+#: .\bookings\models.py:63 .\courts\models.py:63
+msgid "inizio"
+msgstr "start"
+
+#: .\bookings\models.py:64 .\courts\models.py:64
+msgid "fine"
+msgstr "end"
+
+#: .\bookings\models.py:66 .\courts\models.py:20
+msgid "prezzo"
+msgstr "price"
+
+#: .\bookings\models.py:67
+msgid "stato"
+msgstr "status"
+
+#: .\bookings\templates\bookings\_booking_table.html:5
+#: .\bookings\templates\bookings\confirm.html:10 .\courts\forms.py:22
+#: .\courts\templates\courts\staff\courts.html:37
+msgid "Campo"
+msgstr "Court"
+
+#: .\bookings\templates\bookings\_booking_table.html:6
+#: .\bookings\templates\bookings\confirm.html:11
+msgid "Data"
+msgstr "Date"
+
+#: .\bookings\templates\bookings\_booking_table.html:7
+msgid "Orario"
+msgstr "Time"
+
+#: .\bookings\templates\bookings\_booking_table.html:8
+#: .\bookings\templates\bookings\confirm.html:14
+msgid "Prezzo"
+msgstr "Price"
+
+#: .\bookings\templates\bookings\_booking_table.html:25
+msgid "Nessuna prenotazione."
+msgstr "No bookings."
+
+#: .\bookings\templates\bookings\_calendar.html:7
+msgid "Giorno prima"
+msgstr "Previous day"
+
+#: .\bookings\templates\bookings\_calendar.html:12
+msgid "Giorno dopo"
+msgstr "Next day"
+
+#: .\bookings\templates\bookings\_calendar.html:16
+msgid "Vai al giorno"
+msgstr "Go to day"
+
+#: .\bookings\templates\bookings\_calendar.html:18
+msgid "Vai"
+msgstr "Go"
+
+#: .\bookings\templates\bookings\_calendar.html:25
+msgid "Ora"
+msgstr "Time"
+
+#: .\bookings\templates\bookings\_calendar.html:38
+msgid "La tua prenotazione"
+msgstr "Your booking"
+
+#: .\bookings\templates\bookings\_calendar.html:39
+msgid "Occupato"
+msgstr "Taken"
+
+#: .\bookings\templates\bookings\_calendar.html:43
+msgid "Bloccato"
+msgstr "Blocked"
+
+#: .\bookings\templates\bookings\_calendar.html:47
+msgid "Prenota"
+msgstr "Book"
+
+#: .\bookings\templates\bookings\calendar.html:4
+#: .\bookings\templates\bookings\calendar.html:7 .\templates\base.html:15
+msgid "Calendario"
+msgstr "Calendar"
+
+#: .\bookings\templates\bookings\confirm.html:4
+#: .\bookings\templates\bookings\confirm.html:7
+msgid "Conferma prenotazione"
+msgstr "Confirm booking"
+
+#: .\bookings\templates\bookings\confirm.html:12 .\courts\forms.py:23
+#: .\courts\templates\courts\staff\courts.html:37
+msgid "Inizio"
+msgstr "Start"
+
+#: .\bookings\templates\bookings\confirm.html:13 .\courts\forms.py:24
+#: .\courts\templates\courts\staff\courts.html:37
+msgid "Fine"
+msgstr "End"
+
+#: .\bookings\templates\bookings\confirm.html:14
+msgid "da pagare in contanti in sede"
+msgstr "to be paid in cash on site"
+
+#: .\bookings\templates\bookings\confirm.html:19
+msgid "Conferma"
+msgstr "Confirm"
+
+#: .\bookings\templates\bookings\confirm.html:21
+msgid "Torna al calendario"
+msgstr "Back to the calendar"
+
+#: .\bookings\templates\bookings\my_bookings.html:4
+#: .\bookings\templates\bookings\my_bookings.html:7 .\templates\base.html:20
+msgid "Le mie prenotazioni"
+msgstr "My bookings"
+
+#: .\bookings\templates\bookings\my_bookings.html:9
+msgid "Prossime"
+msgstr "Upcoming"
+
+#: .\bookings\templates\bookings\my_bookings.html:12
+msgid "Passate"
+msgstr "Past"
+
+#: .\bookings\views.py:73
+msgid "Prenotazione confermata."
+msgstr "Booking confirmed."
+
+#: .\common\errors.py:6
+msgid ""
+"Orario non valido: si gioca dalle 8:00 alle 23:00, con inizio ogni 15 minuti."
+msgstr "Invalid time: courts are open from 8:00 to 23:00, with a start every 15 minutes."
+
+#: .\common\errors.py:7
+msgid "Questo orario è già passato."
+msgstr "This time has already passed."
+
+#: .\common\errors.py:8
+msgid "Si può prenotare al massimo fino a 14 giorni da oggi."
+msgstr "You can book at most 14 days ahead."
+
+#: .\common\errors.py:9
+msgid "Il campo è già occupato in questo orario."
+msgstr "The court is already taken at this time."
+
+#: .\common\errors.py:10
+msgid ""
+"Il tesserato ha già una prenotazione in questo orario, anche su un altro "
+"campo."
+msgstr "The member already has a booking at this time, possibly on another court."
+
+#: .\common\errors.py:11
+msgid "Il campo non è disponibile in questo orario."
+msgstr "The court is not available at this time."
+
+#: .\common\errors.py:12
+msgid "Hai già 3 prenotazioni attive: è il massimo consentito."
+msgstr "You already have 3 active bookings: that is the maximum allowed."
+
+#: .\common\errors.py:13
+msgid "La tessera è scaduta: dopo il rinnovo potrai prenotare."
+msgstr "Your card has expired: you can book again after renewing it."
+
+#: .\common\errors.py:14
+msgid "La tessera scade prima della data di questo slot."
+msgstr "The card expires before the date of this slot."
+
+#: .\common\errors.py:15
+msgid "L'account è bloccato: rivolgiti all'admin."
+msgstr "The account is blocked: please contact the admin."
+
+#: .\common\errors.py:16
+msgid "L'account è disattivato."
+msgstr "The account is deactivated."
+
+#: .\common\errors.py:17
+msgid "La prenotazione deve essere intestata a un tesserato."
+msgstr "The booking must be in the name of a member."
+
+#: .\courts\forms.py:15
+msgid "Prezzo (€)"
+msgstr "Price (€)"
+
+#: .\courts\forms.py:23 .\courts\forms.py:24
+msgid "Data (gg/mm/aaaa) e ora (hh:mm)"
+msgstr "Date (dd/mm/yyyy) and time (hh:mm)"
+
+#: .\courts\forms.py:30
+msgid "La fine deve essere dopo l'inizio."
+msgstr "The end must be after the start."
+
+#: .\courts\models.py:13 .\courts\models.py:41
+msgid "Calcio"
+msgstr "Football"
+
+#: .\courts\models.py:14
+msgid "Tennis"
+msgstr "Tennis"
+
+#: .\courts\models.py:15 .\courts\models.py:44
+msgid "Pallacanestro"
+msgstr "Basketball"
+
+#: .\courts\models.py:16 .\courts\models.py:45
+msgid "Bocce"
+msgstr "Bocce"
+
+#: .\courts\models.py:19
+msgid "durata dello slot (minuti)"
+msgstr "slot length (minutes)"
+
+#: .\courts\models.py:42
+msgid "Tennis 1"
+msgstr "Tennis 1"
+
+#: .\courts\models.py:43
+msgid "Tennis 2"
+msgstr "Tennis 2"
+
+#: .\courts\templates\courts\staff\courts.html:5 .\templates\base.html:17
+msgid "Prezzi e blocchi"
+msgstr "Prices and blocks"
+
+#: .\courts\templates\courts\staff\courts.html:7
+msgid "Prezzi per tipo di campo"
+msgstr "Prices per court type"
+
+#: .\courts\templates\courts\staff\courts.html:8
+msgid "Il nuovo prezzo vale per le prenotazioni create da adesso in poi."
+msgstr "The new price applies to bookings created from now on."
+
+#: .\courts\templates\courts\staff\courts.html:11
+msgid "Tipo di campo"
+msgstr "Court type"
+
+#: .\courts\templates\courts\staff\courts.html:11
+msgid "Prezzo attuale"
+msgstr "Current price"
+
+#: .\courts\templates\courts\staff\courts.html:11
+msgid "Nuovo prezzo"
+msgstr "New price"
+
+#: .\courts\templates\courts\staff\courts.html:33
+msgid "Blocchi dei campi"
+msgstr "Court blocks"
+
+#: .\courts\templates\courts\staff\courts.html:34
+msgid ""
+"Le prenotazioni non ancora iniziate che si sovrappongono al blocco vengono "
+"annullate dal sistema."
+msgstr "Bookings not started yet that overlap the block are cancelled by the system."
+
+#: .\courts\templates\courts\staff\courts.html:50
+msgid "Rimuovi"
+msgstr "Remove"
+
+#: .\courts\templates\courts\staff\courts.html:55
+msgid "Nessun blocco in corso o futuro."
+msgstr "No current or future blocks."
+
+#: .\courts\templates\courts\staff\courts.html:60
+msgid "Nuovo blocco"
+msgstr "New block"
+
+#: .\courts\templates\courts\staff\courts.html:65
+msgid "Blocca il campo"
+msgstr "Block the court"
+
+#: .\courts\views.py:30
+msgid "Prezzo aggiornato."
+msgstr "Price updated."
+
+#: .\courts\views.py:44
+msgid "Campo bloccato."
+msgstr "Court blocked."
+
+#: .\courts\views.py:49
+msgid "Blocco rimosso."
+msgstr "Block removed."
+
+#: .\templates\base.html:5 .\templates\base.html:12
 msgid "Prenotazione campi"
 msgstr "Court booking"
 
-#: .\templates\base.html:18
+#: .\templates\base.html:26
 msgid "Esci"
 msgstr "Log out"

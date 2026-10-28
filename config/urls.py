@@ -6,4 +6,6 @@ urlpatterns = [
     # set_language: the language selector on the login page (RNF-02).
     path("i18n/", include("django.conf.urls.i18n")),
     path("", include("accounts.urls")),
+    path("", include("bookings.urls")),
+    path("", include("courts.urls")),
 ]

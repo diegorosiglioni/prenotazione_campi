@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Conferma prenotazione" %}{% endblock %}
+
+{% block content %}
+<h1>{% translate "Conferma prenotazione" %}</h1>
+{% if error %}<p class="error-box">{{ error }}</p>{% endif %}
+<dl class="details">
+  <dt>{% translate "Campo" %}</dt><dd>{{ court }}</dd>
+  <dt>{% translate "Data" %}</dt><dd>{{ start|date:"l" }} {{ start|date }}</dd>
+  <dt>{% translate "Inizio" %}</dt><dd>{{ start|time }}</dd>
+  <dt>{% translate "Fine" %}</dt><dd>{{ end|time }}</dd>
+  <dt>{% translate "Prezzo" %}</dt><dd>€ {{ price }} <span class="muted">{% translate "da pagare in contanti in sede" %}</span></dd>
+</dl>
+<form method="post" class="card">
+  {% csrf_token %}
+  {% if form %}{{ form.as_div }}{% endif %}
+  <button type="submit">{% translate "Conferma" %}</button>
+</form>
+<p><a href="{% url 'calendar' %}?date={{ start|date:'Y-m-d' }}">{% translate "Torna al calendario" %}</a></p>
+{% endblock %}

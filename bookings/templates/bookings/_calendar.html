@@ -1,0 +1,54 @@
+{% load i18n %}{% url 'calendar' as calendar_url %}
+{# The part HTMX replaces when the day changes (RF-11). Without JavaScript the links work as usual. #}
+<div id="calendar">
+  <nav class="calendar-nav">
+    {% if previous_day != day %}
+    <a href="{{ calendar_url }}?date={{ previous_day|date:'Y-m-d' }}"
+       hx-get="{{ calendar_url }}?date={{ previous_day|date:'Y-m-d' }}" hx-target="#calendar" hx-swap="outerHTML" hx-push-url="true">&larr; {% translate "Giorno prima" %}</a>
+    {% endif %}
+    <strong>{{ day|date:"l" }} {{ day }}</strong>
+    {% if next_day != day %}
+    <a href="{{ calendar_url }}?date={{ next_day|date:'Y-m-d' }}"
+       hx-get="{{ calendar_url }}?date={{ next_day|date:'Y-m-d' }}" hx-target="#calendar" hx-swap="outerHTML" hx-push-url="true">{% translate "Giorno dopo" %} &rarr;</a>
+    {% endif %}
+    <form method="get" action="{{ calendar_url }}" class="inline"
+          hx-get="{{ calendar_url }}" hx-target="#calendar" hx-swap="outerHTML" hx-push-url="true" hx-trigger="change, submit">
+      <label for="calendar-date" class="inline-label">{% translate "Vai al giorno" %}</label>
+      <input type="date" id="calendar-date" name="date" value="{{ day|date:'Y-m-d' }}">
+      <button type="submit">{% translate "Vai" %}</button>
+    </form>
+  </nav>
+
+  <table class="calendar">
+    <thead>
+      <tr>
+        <th>{% translate "Ora" %}</th>
+        {% for court in courts %}<th>{{ court }}</th>{% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <th class="calendar-time">{{ row.time|time:"H:i" }}</th>
+        {% for cell in row.cells %}
+        {% if cell.state == "booked" %}
+        <td class="cell-booked{% if cell.own %} cell-own{% endif %}">
+          {% if cell.first %}
+            {% if user.is_admin %}{{ cell.booking.member.last_name }} {{ cell.booking.member.first_name }} · {{ cell.booking.get_status_display }}
+            {% elif cell.own %}{% translate "La tua prenotazione" %}
+            {% else %}{% translate "Occupato" %}{% endif %}
+          {% endif %}
+        </td>
+        {% elif cell.state == "blocked" %}
+        <td class="cell-blocked">{% translate "Bloccato" %}</td>
+        {% elif cell.state == "past" %}
+        <td class="cell-past"></td>
+        {% else %}
+        <td class="cell-free">{% if cell.url %}<a href="{{ cell.url }}">{% translate "Prenota" %}</a>{% endif %}</td>
+        {% endif %}
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

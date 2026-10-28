@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% translate "Prezzi e blocchi" %}</h1>
+
+<h2>{% translate "Prezzi per tipo di campo" %}</h2>
+<p class="muted">{% translate "Il nuovo prezzo vale per le prenotazioni create da adesso in poi." %}</p>
+<table>
+  <thead>
+    <tr><th>{% translate "Tipo di campo" %}</th><th>{% translate "Prezzo attuale" %}</th><th>{% translate "Nuovo prezzo" %}</th></tr>
+  </thead>
+  <tbody>
+    {% for court_type, form in prices %}
+    <tr>
+      <td>{{ court_type }}</td>
+      <td>€ {{ court_type.price }}</td>
+      <td>
+        <form method="post" class="inline-form">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="price">
+          {{ form.court_type }}
+          {{ form.price.errors }}
+          {{ form.price }}
+          <button type="submit">{% translate "Salva" %}</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>{% translate "Blocchi dei campi" %}</h2>
+<p class="muted">{% translate "Le prenotazioni non ancora iniziate che si sovrappongono al blocco vengono annullate dal sistema." %}</p>
+<table>
+  <thead>
+    <tr><th>{% translate "Campo" %}</th><th>{% translate "Inizio" %}</th><th>{% translate "Fine" %}</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% for block in blocks %}
+    <tr>
+      <td>{{ block.court }}</td>
+      <td>{{ block.start }}</td>
+      <td>{{ block.end }}</td>
+      <td>
+        <form method="post" class="inline">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="remove">
+          <input type="hidden" name="block" value="{{ block.pk }}">
+          <button type="submit">{% translate "Rimuovi" %}</button>
+        </form>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">{% translate "Nessun blocco in corso o futuro." %}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h3>{% translate "Nuovo blocco" %}</h3>
+<form method="post" class="card">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="block">
+  {{ block_form.as_div }}
+  <button type="submit">{% translate "Blocca il campo" %}</button>
+</form>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Calendario" %}{% endblock %}
+
+{% block content %}
+<h1>{% translate "Calendario" %}</h1>
+{% include "bookings/_calendar.html" %}
+{% endblock %}

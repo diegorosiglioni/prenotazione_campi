@@ -4,13 +4,21 @@
   <meta charset="utf-8">
   <title>{% block title %}{% translate "Prenotazione campi" %}{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  <script src="{% static 'htmx.min.js' %}" defer></script>
 </head>
-<body>
+{# HTMX requests carry the CSRF token too. #}
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
   <header class="site-header">
     <span class="site-name">{% translate "Prenotazione campi" %}</span>
     {% if user.is_authenticated %}
     <nav>
-      {% if user.is_admin %}<a href="{% url 'staff_users' %}">{% translate "Utenti" %}</a>{% endif %}
+      <a href="{% url 'calendar' %}">{% translate "Calendario" %}</a>
+      {% if user.is_admin %}
+      <a href="{% url 'staff_courts' %}">{% translate "Prezzi e blocchi" %}</a>
+      <a href="{% url 'staff_users' %}">{% translate "Utenti" %}</a>
+      {% else %}
+      <a href="{% url 'my_bookings' %}">{% translate "Le mie prenotazioni" %}</a>
+      {% endif %}
       <a href="{% url 'account' %}">{% translate "Il mio account" %}</a>
       <a href="{% url 'password_change' %}">{% translate "Cambia password" %}</a>
       <form method="post" action="{% url 'logout' %}" class="inline">

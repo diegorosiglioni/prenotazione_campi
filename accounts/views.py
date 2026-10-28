@@ -39,10 +39,7 @@ class PasswordChangeView(SuccessMessageMixin, auth_views.PasswordChangeView):
 
 @login_required
 def home(request):
-    # Until the calendar exists (piece 3): admin to the user list, members to their account.
-    if request.user.is_admin:
-        return redirect("staff_users")
-    return redirect("account")
+    return redirect("calendar")
 
 
 @login_required
@@ -63,6 +60,18 @@ def admin_required(view):
     @wraps(view)
     def wrapper(request, *args, **kwargs):
         if not request.user.is_admin:
+            raise PermissionDenied
+        return view(request, *args, **kwargs)
+
+    return login_required(wrapper)
+
+
+def member_required(view):
+    """Member pages: anonymous users go to the login page, the admin gets 403 (RF-31)."""
+
+    @wraps(view)
+    def wrapper(request, *args, **kwargs):
+        if request.user.is_admin:
             raise PermissionDenied
         return view(request, *args, **kwargs)
 
