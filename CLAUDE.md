@@ -5,8 +5,8 @@ I requisiti sono in `docs/requisiti-prenotazione-campi.md` e sono la fonte di ve
 Le decisioni prese durante il progetto sono in `docs/decisioni.md`.
 
 ## Stato attuale
-- Base del progetto pronta (pezzo 1 di `docs/specifiche-tecniche.md`): moduli vuoti, nessun modello. I piani dei pezzi sono in `docs/piani/`.
-- Il database di sviluppo non ha migrazioni: non eseguire `migrate` prima dell'utente personalizzato (pezzo 2).
+- Pezzi 1 (base) e 2 (account e login) di `docs/specifiche-tecniche.md` realizzati. I piani dei pezzi sono in `docs/piani/`.
+- Utente personalizzato `accounts.User` (login con codice tessera); azioni dell'admin registrate con `audit.services.log_action()`.
 - Stack concordato: Django + PostgreSQL, template lato server (HTMX solo per il calendario), Docker per sviluppo e deploy.
 - Le versioni delle librerie si fissano in `requirements.txt`, verificandole sulla documentazione ufficiale.
 
@@ -62,6 +62,8 @@ Si aggiungono qui solo dopo averli eseguiti davvero.
 
 - Dipendenze: `.\.venv\Scripts\python.exe -m pip install -r requirements.txt`, poi `.\.venv\Scripts\python.exe -m pip check`.
 - Database: `docker compose up -d db`; `docker compose ps` deve mostrare `db` "healthy".
+  Se Docker Desktop è spento, i test si fermano con "connection timeout expired".
+- Migrazioni: `.\.venv\Scripts\python.exe manage.py migrate`.
 - Test: `.\.venv\Scripts\python.exe manage.py test --noinput`
   (`--noinput` elimina senza chiedere un database di test rimasto da un'esecuzione interrotta; senza, Django chiede conferma).
 - Controlli: `.\.venv\Scripts\python.exe manage.py check` e `.\.venv\Scripts\python.exe manage.py makemigrations --check --dry-run`.
