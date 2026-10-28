@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Exclusion constraints on bookings (RF-07, RF-44).
+    "django.contrib.postgres",
     "common",
     "accounts",
     "courts",
