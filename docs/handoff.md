@@ -9,36 +9,31 @@ Punto di partenza per chi riprende il lavoro (una persona o una nuova sessione d
 | Pezzo (specifiche, sezione 7) | Stato | Piano |
 | --- | --- | --- |
 | 1. Base del progetto | Unito in `develop` (PR #6), CI verde | `piani/01-base-progetto.md` |
-| 2. Account e login | Fatto; PR #7 `feature/account-login` → `develop` aperta, CI verde, **da unire** | `piani/02-account-login.md` |
-| 3. Campi e prenotazione | Da pianificare | – |
+| 2. Account e login | Unito in `develop` (PR #7), CI verde | `piani/02-account-login.md` |
+| 3. Campi e prenotazione | Fatto sul PC, branch `feature/campi-prenotazione`, **da committare** (su richiesta) | `piani/03-campi-prenotazione.md` |
 | 4. Cancellazioni | – | – |
 | 5. Esiti, pagamenti, debiti e strike | – | – |
 | 6. Notifiche e job giornaliero | – | – |
 | 7. Pannello admin e deploy | – | – |
 
-Ultimi commit del pezzo 2: `f011d87` (piano), `3180fcf` (codice e test), `b59886d` (documenti).
-
-Verifiche del pezzo 2, eseguite il 28/10/2026: 104 test superati sul PC e nella CI della PR #7, `check` e `makemigrations --check` senza problemi, prova nel browser fatta dall'utente.
+Verifiche del pezzo 3: vedi `piani/03-campi-prenotazione.md`, sezione 12.
 
 ## Prossimi passi
 
-1. L'utente unisce la PR #7: https://github.com/diegorosiglioni/prenotazione_campi/pull/7
-2. Aggiornare `develop` sul PC e creare `feature/campi-prenotazione`.
-3. Pezzo 3: Ask → Plan (`piani/03-campi-prenotazione.md`, con scelte numerate e una proposta per ciascuna) → approvazione → Execute → Verifica e commit.
+1. Commit del pezzo 3 (proposti nella sezione 10 del piano), push e PR `feature/campi-prenotazione` → `develop`, solo su richiesta.
+2. Prova nel browser del pezzo 3 da parte dell'utente (passo 8 del piano).
+3. Decidere se accorciare i test con un hash veloce delle password solo per i test (vedi "Ambiente").
+4. Pezzo 4 (cancellazioni): prima confermare l'ipotesi aperta sull'offerta cancellata dall'admin nelle ultime 2 ore.
 
-## Cose da ricordare per il pezzo 3
+## Cose da ricordare per i prossimi pezzi
 
-Lasciate in sospeso dal pezzo 2 (`piani/02-account-login.md`, sezione 9):
-
-- **RF-40.** `accounts.services.deactivate_member()` per ora blocca solo l'accesso: deve anche annullare le prenotazioni non ancora iniziate, con motivo "account disattivato" (e rimborso da restituire se erano pagate, RF-48).
-- **RF-31.** L'admin non può essere intestatario di una prenotazione.
-- **RF-40, RF-41.** L'admin non prenota per un account disattivato.
-- **`DomainError`** in `common`, con i codici della tabella "Errori" delle specifiche: nasce nel pezzo 3.
-- **Database.** `django.contrib.postgres` tra le app ed estensione `btree_gist` con una migrazione, per i vincoli di esclusione di RF-07 e RF-44.
-- **HTMX 2.0.11.** Il file `static/htmx.min.js` si scarica nel pezzo 3, con il calendario.
-- **Pagina iniziale.** `accounts.views.home` oggi manda il tesserato su "Il mio account" e l'admin sull'elenco utenti: dal pezzo 3 entrambi vanno al calendario.
+- **Notifiche (pezzo 6).** Vanno aggiunte nei servizi già scritti: `create_booking` quando agisce l'admin, `cancel_by_system` (blocco del campo, disattivazione, e dal pezzo 5 blocco dell'account).
+- **Rimborsi (pezzo 5).** `cancel_by_system` non crea movimenti: il rimborso da restituire si ricava dai movimenti, come dicono le specifiche.
+- **Pezzo 4.** `Booking.admin_reason` non esiste ancora; `outcome_by` e `outcome_at` arrivano con il pezzo 5. Il pulsante "Cancella" va in "Le mie prenotazioni" (`bookings/templates/bookings/_booking_table.html`).
+- **Errori.** Nuovi codici in `common/errors.py` (`MESSAGES`), con traduzione; i codici del pezzo 4 e 5 (`too_late_to_cancel`, `outcome_too_early`, `invalid_transition`) non ci sono ancora.
 - **Ora corrente.** Solo da `common.now()`; nei test `common.clock.fixed_now()`. I campi `created_at` usano `default=common.clock.now`, mai `auto_now_add`.
 - **Registro azioni.** Ogni azione dell'admin chiama `audit.services.log_action()` nella stessa transazione.
+- **Ordine dei blocchi delle righe.** Utente → campo → prenotazione, in ogni nuovo servizio.
 
 ## Punti aperti
 
@@ -57,7 +52,7 @@ Elenco completo e aggiornato: `decisioni.md`, sezione "Ipotesi aperte".
 - **Chiave segreta senza `$`:** Docker Compose legge anche `.env`.
 - **gettext e `gh`:** in un terminale aperto prima dell'installazione non sono nel PATH.
 - **Push dei workflow:** `gh` ora ha il permesso `workflow`; senza, GitHub rifiuta il push di `.github/workflows/`.
-- **Test lenti:** 104 test in circa 70 secondi, quasi tutti spesi nell'hash delle password. Si può accorciare con un hash veloce solo per i test, se diventa scomodo.
+- **Test lenti:** dal pezzo 3 la suite completa dura diversi minuti (vedi piano 3, sezione 12), quasi tutti spesi nell'hash delle password degli utenti creati nei test. Si può accorciare con un hash veloce solo per i test.
 - **`create_admin`:** chiede la password in modo interattivo, quindi va lanciato da un terminale dell'utente. Per una nuova password dell'admin: `changepassword ADMIN`, con il codice in maiuscolo.
 
 ## Comandi principali

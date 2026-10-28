@@ -209,7 +209,7 @@ Da dettagliare nel piano del pezzo 5: la correzione di un esito su cui è già s
 | Codice | Quando | Requisito |
 | --- | --- | --- |
 | `out_of_hours` | Fuori dalle 8:00–23:00 o non a passi di 15 minuti | RF-04, RF-47 |
-| `slot_in_past` | Lo slot inizia prima di adesso | RF-08 |
+| `slot_in_past` | Lo slot, o il blocco del campo, inizia prima di adesso | RF-08, RF-14 |
 | `out_of_window` | Oltre i 14 giorni | RF-08 |
 | `slot_taken` | Campo già occupato | RF-07 |
 | `member_overlap` | Il tesserato ha già una prenotazione in quell'orario | RF-44 |
@@ -219,6 +219,7 @@ Da dettagliare nel piano del pezzo 5: la correzione di un esito su cui è già s
 | `card_expires_before_slot` | Lo slot è dopo la scadenza della tessera | RF-34 |
 | `account_blocked` | Account bloccato | RF-10 |
 | `account_inactive` | Account disattivato | RF-40 |
+| `not_a_member` | L'intestatario non è un tesserato (per esempio l'admin) | RF-31 |
 | `too_late_to_cancel` | Il tesserato cancella nelle ultime 2 ore | RF-16 |
 | `outcome_too_early` | No-show o non pagata prima dell'inizio | RF-49 |
 | `invalid_transition` | Passaggio di stato non ammesso | RF-21 |

@@ -5,8 +5,11 @@ I requisiti sono in `docs/requisiti-prenotazione-campi.md` e sono la fonte di ve
 Le decisioni prese durante il progetto sono in `docs/decisioni.md`.
 
 ## Stato attuale
-- Pezzi 1 (base) e 2 (account e login) di `docs/specifiche-tecniche.md` realizzati. I piani dei pezzi sono in `docs/piani/`.
+- Pezzi 1 (base), 2 (account e login) e 3 (campi e prenotazione) di `docs/specifiche-tecniche.md` realizzati. I piani dei pezzi sono in `docs/piani/`.
 - Utente personalizzato `accounts.User` (login con codice tessera); azioni dell'admin registrate con `audit.services.log_action()`.
+- Le regole violate sollevano `common.errors.DomainError(codice)`; ogni codice ha il suo messaggio tradotto in `common/errors.py`.
+- Prenotazioni create solo con `bookings.services.booking.create_booking()`; annullamenti del sistema con `cancel_by_system()`.
+- I test di concorrenza usano `TransactionTestCase` con `serialized_rollback = True`, altrimenti spariscono i campi creati dalla migrazione di dati.
 - Stack concordato: Django + PostgreSQL, template lato server (HTMX solo per il calendario), Docker per sviluppo e deploy.
 - Le versioni delle librerie si fissano in `requirements.txt`, verificandole sulla documentazione ufficiale.
 
