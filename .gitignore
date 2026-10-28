@@ -5,6 +5,9 @@
 .venv/
 __pycache__/
 
+# Traduzioni compilate: si generano con compilemessages
+*.mo
+
 # Log
 logs/
 
