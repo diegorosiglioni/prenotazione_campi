@@ -4,6 +4,8 @@ from django.db import transaction
 
 from accounts.models import LoginAttempt, User, normalize_card_code
 from audit.services import log_action
+from bookings.models import Booking, SystemReason
+from bookings.services.booking import cancel_by_system
 from common.clock import now
 
 MAX_FAILED_LOGINS = 5
@@ -94,8 +96,10 @@ def set_temporary_password(actor, member, password):
 
 @transaction.atomic
 def deactivate_member(actor, member):
-    """The account can no longer log in (RF-40). Cancelling its bookings comes with piece 3."""
-    return _set_active(actor, member, False, "user_deactivated")
+    """The account can no longer log in, and its bookings not started yet are cancelled (RF-40)."""
+    member = _set_active(actor, member, False, "user_deactivated")
+    cancel_by_system(Booking.objects.filter(member=member), SystemReason.ACCOUNT_DEACTIVATED, actor)
+    return member
 
 
 @transaction.atomic

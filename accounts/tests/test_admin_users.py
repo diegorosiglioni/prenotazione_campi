@@ -8,6 +8,9 @@ from accounts import services
 from accounts.models import User
 from accounts.tests.helpers import PASSWORD, make_admin, make_member
 from audit.models import ActionLog
+from bookings.models import Booking
+from bookings.tests.helpers import insert_booking, rome
+from common.clock import fixed_now
 
 TEMPORARY = "temporanea-1"
 
@@ -170,6 +173,26 @@ class EditMemberTests(AdminUserTestCase):
         self.client.logout()
         response = self.client.post(reverse("login"), {"username": "ABC1", "password": PASSWORD})
         self.assertContains(response, "Codice tessera o password non corretti.")
+
+    def test_rf40_deactivation_cancels_future_bookings(self):
+        now = rome(2026, 10, 20, 10, 0)
+        future = insert_booking(self.member, "tennis_1", rome(2026, 10, 21, 18, 0))
+        offered = insert_booking(self.member, "bocce", rome(2026, 10, 22, 18, 0), status=Booking.Status.OFFERED)
+        started = insert_booking(self.member, "tennis_2", rome(2026, 10, 20, 9, 30))
+        past = insert_booking(self.member, "tennis_2", rome(2026, 10, 19, 18, 0))
+        with fixed_now(now):
+            self.post({"action": "deactivate"})
+        for booking in (future, offered):
+            booking.refresh_from_db()
+            self.assertEqual(booking.status, Booking.Status.SYSTEM_CANCELLED)
+            self.assertEqual(booking.system_reason, "account_deactivated")
+            self.assertEqual(booking.cancelled_at, now)
+            self.assertIsNone(booking.cancelled_by)
+        for booking in (started, past):
+            booking.refresh_from_db()
+            self.assertEqual(booking.status, Booking.Status.BOOKED)
+        actions = list(ActionLog.objects.order_by("pk").values_list("action", flat=True))
+        self.assertEqual(actions, ["user_deactivated", "booking_system_cancelled", "booking_system_cancelled"])
 
     def test_rf40_admin_reactivates_member(self):
         self.member.is_active = False
