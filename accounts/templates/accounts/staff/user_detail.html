@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{{ member.first_name }} {{ member.last_name }}</h1>
+<p>
+  {% translate "Codice tessera" %}: {{ member.card_code }} ·
+  {% if member.is_active %}{% translate "Attivo" %}{% else %}<span class="danger">{% translate "Disattivato" %}</span>{% endif %}
+  {% if member.must_change_password %}· {% translate "Deve cambiare la password" %}{% endif %}
+</p>
+
+<h2>{% translate "Dati" %}</h2>
+<form method="post" class="card">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="update">
+  {{ member_form.as_div }}
+  <button type="submit">{% translate "Salva" %}</button>
+</form>
+
+<h2>{% translate "Nuova password temporanea" %}</h2>
+<form method="post" class="card">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="password">
+  {{ password_form.as_div }}
+  <button type="submit">{% translate "Assegna" %}</button>
+</form>
+
+<h2>{% translate "Accesso" %}</h2>
+<form method="post" class="card">
+  {% csrf_token %}
+  {% if member.is_active %}
+  <input type="hidden" name="action" value="deactivate">
+  <p>{% translate "Un account disattivato non può accedere. Storico e dati restano." %}</p>
+  <button type="submit">{% translate "Disattiva account" %}</button>
+  {% else %}
+  <input type="hidden" name="action" value="reactivate">
+  <button type="submit">{% translate "Riattiva account" %}</button>
+  {% endif %}
+</form>
+
+<p><a href="{% url 'staff_users' %}">{% translate "Torna all'elenco" %}</a></p>
+{% endblock %}

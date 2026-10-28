@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: prenotazione-campi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-20 14:11+0200\n"
+"POT-Creation-Date: 2026-10-28 12:42+0100\n"
 "PO-Revision-Date: 2026-10-20 14:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,6 +15,303 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\templates\base.html:5
+#: .\accounts\forms.py:17
+msgid "Codice tessera o password non corretti."
+msgstr "Incorrect card code or password."
+
+#: .\accounts\forms.py:18
+msgid "Troppi tentativi falliti: riprova tra 15 minuti."
+msgstr "Too many failed attempts: try again in 15 minutes."
+
+#: .\accounts\forms.py:56
+msgid "Password temporanea"
+msgstr "Temporary password"
+
+#: .\accounts\forms.py:59
+msgid "Ripeti la password temporanea"
+msgstr "Repeat the temporary password"
+
+#: .\accounts\forms.py:68 .\accounts\management\commands\create_admin.py:32
+msgid "Le due password non coincidono."
+msgstr "The two passwords do not match."
+
+#: .\accounts\forms.py:83
+msgid "gg/mm/aaaa"
+msgstr "dd/mm/yyyy"
+
+#: .\accounts\management\commands\create_admin.py:22
+msgid ""
+"L'admin esiste già. Per una nuova password usare: changepassword <codice>."
+msgstr "The admin already exists. For a new password use: changepassword <code>."
+
+#: .\accounts\management\commands\create_admin.py:25
+msgid "Codice riservato dell'admin: "
+msgstr "Reserved admin code: "
+
+#: .\accounts\management\commands\create_admin.py:26
+msgid "Nome: "
+msgstr "First name: "
+
+#: .\accounts\management\commands\create_admin.py:27
+msgid "Cognome: "
+msgstr "Last name: "
+
+#: .\accounts\management\commands\create_admin.py:30
+msgid "Password: "
+msgstr "Password: "
+
+#: .\accounts\management\commands\create_admin.py:31
+msgid "Ripeti la password: "
+msgstr "Repeat the password: "
+
+#: .\accounts\management\commands\create_admin.py:47
+msgid "L'admin esiste già."
+msgstr "The admin already exists."
+
+#: .\accounts\management\commands\create_admin.py:48
+#, python-format
+msgid "Admin creato con il codice %(code)s."
+msgstr "Admin created with code %(code)s."
+
+#: .\accounts\models.py:15
+msgid ""
+"Il codice tessera può contenere solo lettere dalla A alla Z e numeri, fino a "
+"20 caratteri."
+msgstr "The card code may contain only letters A to Z and digits, up to 20 characters."
+
+#: .\accounts\models.py:47
+msgid "Tesserato"
+msgstr "Member"
+
+#: .\accounts\models.py:48
+msgid "Admin"
+msgstr "Admin"
+
+#: .\accounts\models.py:51
+msgid "codice tessera"
+msgstr "card code"
+
+#: .\accounts\models.py:55
+msgid "Questo codice tessera è già in uso."
+msgstr "This card code is already in use."
+
+#: .\accounts\models.py:57
+msgid "nome"
+msgstr "first name"
+
+#: .\accounts\models.py:58
+msgid "cognome"
+msgstr "last name"
+
+#: .\accounts\models.py:59
+msgid "scadenza tessera"
+msgstr "card expiry"
+
+#: .\accounts\models.py:60
+msgid "ruolo"
+msgstr "role"
+
+#: .\accounts\models.py:62
+msgid "lingua"
+msgstr "language"
+
+#: .\accounts\models.py:65
+msgid "attivo"
+msgstr "active"
+
+#: .\accounts\models.py:67
+msgid "bloccato"
+msgstr "blocked"
+
+#: .\accounts\models.py:68
+msgid "deve cambiare la password"
+msgstr "must change password"
+
+#: .\accounts\models.py:69
+msgid "email"
+msgstr "email"
+
+#: .\accounts\models.py:70
+msgid "telefono"
+msgstr "phone"
+
+#: .\accounts\models.py:78
+msgid "utente"
+msgstr "user"
+
+#: .\accounts\models.py:79
+msgid "utenti"
+msgstr "users"
+
+#: .\accounts\models.py:90
+msgid "Esiste già un admin."
+msgstr "An admin already exists."
+
+#: .\accounts\models.py:97
+msgid "La scadenza della tessera è obbligatoria per i tesserati."
+msgstr "Card expiry is required for members."
+
+#: .\accounts\templates\accounts\account.html:5 .\templates\base.html:14
+msgid "Il mio account"
+msgstr "My account"
+
+#: .\accounts\templates\accounts\account.html:7
+#: .\accounts\templates\accounts\staff\user_list.html:11
+msgid "Nome"
+msgstr "First name"
+
+#: .\accounts\templates\accounts\account.html:8
+#: .\accounts\templates\accounts\staff\user_detail.html:7
+#: .\accounts\templates\accounts\staff\user_list.html:12
+msgid "Codice tessera"
+msgstr "Card code"
+
+#: .\accounts\templates\accounts\account.html:10
+#: .\accounts\templates\accounts\staff\user_list.html:13
+msgid "Scadenza tessera"
+msgstr "Card expiry"
+
+#: .\accounts\templates\accounts\account.html:17
+#: .\accounts\templates\accounts\staff\user_detail.html:17
+msgid "Salva"
+msgstr "Save"
+
+#: .\accounts\templates\accounts\account.html:19
+#: .\accounts\templates\accounts\password_change.html:5
+#: .\templates\base.html:15
+msgid "Cambia password"
+msgstr "Change password"
+
+#: .\accounts\templates\accounts\login.html:5
+#: .\accounts\templates\accounts\login.html:10
+msgid "Accedi"
+msgstr "Log in"
+
+#: .\accounts\templates\accounts\login.html:17
+msgid "Lingua"
+msgstr "Language"
+
+#: .\accounts\templates\accounts\login.html:23
+msgid "Cambia lingua"
+msgstr "Change language"
+
+#: .\accounts\templates\accounts\password_change.html:7
+msgid "La tua password è temporanea: scegline una nuova per continuare."
+msgstr "Your password is temporary: choose a new one to continue."
+
+#: .\accounts\templates\accounts\password_change.html:12
+msgid "Salva la nuova password"
+msgstr "Save the new password"
+
+#: .\accounts\templates\accounts\staff\user_create.html:5
+#: .\accounts\templates\accounts\staff\user_list.html:6
+msgid "Nuovo tesserato"
+msgstr "New member"
+
+#: .\accounts\templates\accounts\staff\user_create.html:9
+msgid "Crea account"
+msgstr "Create account"
+
+#: .\accounts\templates\accounts\staff\user_create.html:11
+#: .\accounts\templates\accounts\staff\user_detail.html:41
+msgid "Torna all'elenco"
+msgstr "Back to the list"
+
+#: .\accounts\templates\accounts\staff\user_detail.html:8
+#: .\accounts\templates\accounts\staff\user_list.html:25
+msgid "Attivo"
+msgstr "Active"
+
+#: .\accounts\templates\accounts\staff\user_detail.html:8
+#: .\accounts\templates\accounts\staff\user_list.html:25
+msgid "Disattivato"
+msgstr "Deactivated"
+
+#: .\accounts\templates\accounts\staff\user_detail.html:9
+msgid "Deve cambiare la password"
+msgstr "Must change password"
+
+#: .\accounts\templates\accounts\staff\user_detail.html:12
+msgid "Dati"
+msgstr "Details"
+
+#: .\accounts\templates\accounts\staff\user_detail.html:20
+msgid "Nuova password temporanea"
+msgstr "New temporary password"
+
+#: .\accounts\templates\accounts\staff\user_detail.html:25
+msgid "Assegna"
+msgstr "Assign"
+
+#: .\accounts\templates\accounts\staff\user_detail.html:28
+msgid "Accesso"
+msgstr "Access"
+
+#: .\accounts\templates\accounts\staff\user_detail.html:33
+msgid "Un account disattivato non può accedere. Storico e dati restano."
+msgstr "A deactivated account cannot log in. History and data are kept."
+
+#: .\accounts\templates\accounts\staff\user_detail.html:34
+msgid "Disattiva account"
+msgstr "Deactivate account"
+
+#: .\accounts\templates\accounts\staff\user_detail.html:37
+msgid "Riattiva account"
+msgstr "Reactivate account"
+
+#: .\accounts\templates\accounts\staff\user_list.html:5
+#: .\templates\base.html:13
+msgid "Utenti"
+msgstr "Users"
+
+#: .\accounts\templates\accounts\staff\user_list.html:10
+msgid "Cognome"
+msgstr "Last name"
+
+#: .\accounts\templates\accounts\staff\user_list.html:14
+msgid "Stato"
+msgstr "Status"
+
+#: .\accounts\templates\accounts\staff\user_list.html:26
+msgid "Apri"
+msgstr "Open"
+
+#: .\accounts\templates\accounts\staff\user_list.html:29
+msgid "Nessun tesserato."
+msgstr "No members."
+
+#: .\accounts\views.py:37
+msgid "Password cambiata."
+msgstr "Password changed."
+
+#: .\accounts\views.py:55
+msgid "Lingua aggiornata."
+msgstr "Language updated."
+
+#: .\accounts\views.py:84
+msgid "Account creato."
+msgstr "Account created."
+
+#: .\accounts\views.py:102
+msgid "Dati aggiornati."
+msgstr "Details updated."
+
+#: .\accounts\views.py:108
+msgid "Password temporanea assegnata."
+msgstr "Temporary password assigned."
+
+#: .\accounts\views.py:112
+msgid "Account disattivato."
+msgstr "Account deactivated."
+
+#: .\accounts\views.py:116
+msgid "Account riattivato."
+msgstr "Account reactivated."
+
+#: .\templates\base.html:5 .\templates\base.html:10
 msgid "Prenotazione campi"
 msgstr "Court booking"
+
+#: .\templates\base.html:18
+msgid "Esci"
+msgstr "Log out"

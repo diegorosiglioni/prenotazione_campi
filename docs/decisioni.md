@@ -49,6 +49,16 @@ Questo è l'unico elenco delle ipotesi aperte: i requisiti rimandano qui.
 | 2026-10-20 | Nomi dei test | I test di sola infrastruttura, senza un requisito, usano il prefisso `test_env_` |
 | 2026-10-20 | CI | GitHub Actions su ogni Pull Request e a ogni push su `develop` e `main` |
 | 2026-10-20 | GitHub | `develop` è il branch predefinito; Claude Code crea le PR con `gh` su richiesta, il merge resta all'utente |
+| 2026-10-28 | Pezzo 2: perimetro | Registro azioni (`ActionLog`, `log_action()`) creato nel pezzo 2. La disattivazione per ora blocca solo l'accesso; l'annullamento delle prenotazioni arriva nel pezzo 3. Strike e sblocco nel pezzo 5 |
+| 2026-10-28 | Creazione dell'admin (RF-01) | Comando `create_admin`, usato da chi gestisce il server; rifiuta un secondo admin |
+| 2026-10-28 | Codice tessera (RF-31) | Solo lettere A–Z senza accenti e cifre 0–9, salvato in maiuscolo; stesso formato per il codice dell'admin. Il database rifiuta i codici non validi |
+| 2026-10-28 | Messaggi del login (RNF-05) | Un messaggio generico per password sbagliata, codice inesistente e account disattivato; un messaggio di blocco dopo 5 errori, anche per codici inesistenti. I tentativi durante il blocco non si contano: il blocco finisce 15 minuti dopo il quinto errore |
+| 2026-10-28 | Regole della password (RNF-05) | Solo la lunghezza minima di 8 caratteri; gli altri controlli di Django non si usano |
+| 2026-10-28 | Password temporanea (RF-32, RF-33) | La scrive l'admin, alla creazione dell'account e quando ne assegna una nuova |
+| 2026-10-28 | Riattivazione (RF-40) | **Regola aggiunta.** L'admin può riattivare un account disattivato; l'azione va nel registro e le prenotazioni annullate non tornano |
+| 2026-10-28 | Lingua (RNF-02, RF-55) | Il selettore della pagina di accesso vale solo prima del login; dopo vale la lingua salvata sull'utente, che si cambia da "Il mio account". L'admin la sceglie solo alla creazione dell'account |
+| 2026-10-28 | Pagine del pezzo 2 | Dopo il login: tesserato su "Il mio account", admin sull'elenco utenti, fino al calendario del pezzo 3. Elenco utenti senza ricerca, in ordine di cognome |
+| 2026-10-28 | Aspetto delle pagine | Un piccolo file CSS scritto a mano, senza librerie grafiche. È provvisorio: l'utente vuole rifare la grafica in futuro |
 
 ## Ipotesi aperte
 
