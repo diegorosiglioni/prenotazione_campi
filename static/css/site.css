@@ -1,0 +1,156 @@
+/* Desktop layout only (RNF-01). */
+
+:root {
+  --text: #1f2933;
+  --muted: #616e7c;
+  --border: #cbd2d9;
+  --accent: #1d6f42;
+  --error: #b42318;
+  --background: #f5f7fa;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: var(--text);
+  background: var(--background);
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 32px;
+  background: var(--accent);
+  color: #fff;
+}
+
+.site-name {
+  font-weight: 600;
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.site-header a {
+  color: #fff;
+}
+
+main {
+  max-width: 960px;
+  margin: 32px auto;
+  padding: 0 32px;
+}
+
+form.inline {
+  display: inline;
+}
+
+.card {
+  max-width: 480px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.card > div {
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font: inherit;
+}
+
+button {
+  padding: 6px 14px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.helptext {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+.errorlist {
+  margin: 0 0 8px;
+  padding-left: 18px;
+  color: var(--error);
+}
+
+.messages {
+  padding: 0;
+  list-style: none;
+}
+
+.messages li {
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  background: #e3f4e8;
+  border: 1px solid #a3d9b1;
+  border-radius: 4px;
+}
+
+.notice {
+  padding: 10px 14px;
+  background: #fff6e0;
+  border: 1px solid #f0cf7a;
+  border-radius: 4px;
+}
+
+.language-selector label {
+  display: inline;
+}
+
+.language-selector select {
+  width: auto;
+}
+
+.details dt {
+  font-weight: 600;
+}
+
+.details dd {
+  margin: 0 0 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th,
+td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.danger {
+  color: var(--error);
+}

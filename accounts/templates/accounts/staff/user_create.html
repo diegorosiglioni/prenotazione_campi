@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% translate "Nuovo tesserato" %}</h1>
+<form method="post" class="card">
+  {% csrf_token %}
+  {{ form.as_div }}
+  <button type="submit">{% translate "Crea account" %}</button>
+</form>
+<p><a href="{% url 'staff_users' %}">{% translate "Torna all'elenco" %}</a></p>
+{% endblock %}

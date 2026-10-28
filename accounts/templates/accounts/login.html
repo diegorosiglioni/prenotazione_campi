@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% translate "Accedi" %}</h1>
+<form method="post" action="{% url 'login' %}" class="card">
+  {% csrf_token %}
+  {{ form.as_div }}
+  <input type="hidden" name="next" value="{{ next }}">
+  <button type="submit">{% translate "Accedi" %}</button>
+</form>
+
+<form method="post" action="{% url 'set_language' %}" class="language-selector">
+  {% csrf_token %}
+  {% get_available_languages as LANGUAGES %}
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+  <label for="id_language">{% translate "Lingua" %}</label>
+  <select name="language" id="id_language">
+    {% for code, name in LANGUAGES %}
+    <option value="{{ code }}"{% if code == LANGUAGE_CODE %} selected{% endif %}>{{ name }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">{% translate "Cambia lingua" %}</button>
+</form>
+{% endblock %}
